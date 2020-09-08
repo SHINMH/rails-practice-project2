@@ -15,3 +15,9 @@ import "bootstrap"
 //
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
+
+$(function () {
+  $(".alert").fadeTo(2000, 500).slideUp(500, function () {
+      $(".alert").alert('close');
+  });
+})
