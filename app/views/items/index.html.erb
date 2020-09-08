@@ -1,11 +1,12 @@
 <div class="container my-5">
   <div class="row">
     <% @items.each do |item| %>
-      <div class="col-md-3">
+      <div class="col-md-3 mb-4">
         <div class="card">
           <img src="<%= item.image.url(:thumb) if item.image?%>" class="card-img-top" alt="...">
           <div class="card-body">
-            <h5 class="card-title"> <%= item.title %> </h5>
+            <h4 class="card-title"> <%= item.title %> </h4>
+            <div class="card-subtitle">판매자: <%= item.user&.email%></div>
             <p class="card-text"> <%= item.description %> </p>
           <%= link_to "자세히 보기", item, class:"btn btn-primary" %>
           </div>
@@ -13,4 +14,5 @@
       </div>
     <% end %>
   </div>
+  <%= paginate @items %>
 </div>
