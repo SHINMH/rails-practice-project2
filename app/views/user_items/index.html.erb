@@ -1,0 +1,30 @@
+<div class="container my-5">
+  <div class="row">
+    <div class="col-12 mb-2">
+      <h2>찜한 상품</h2>
+      <hr>  
+    </div>
+
+    <% @user_items.each do |user_item| %>
+      <% if item = user_item.item%>
+        <div class="col-md-3 mb-4">
+          <div class="card">
+            <img src="<%= item.image.url(:thumb) if item.image?%>"  class="card-img-top" alt="...">
+            <div class="card-body">
+              <h4 class="card-title"> <%= item.title %> </h4>
+              <div class="card-subtitle">판매자: <%= item.user&.email%></div>
+              <p class="card-text"> <%= item.description %> </p>
+
+              <%= link_to "자세히 보기", item, class:"btn btn-primary btn-sm" %>
+              <% if item.user == current_user %>
+                <%= link_to "수정", edit_item_path(item), class:"btn btn-secondary  btn-sm"%>
+                <%= link_to "삭제", item, method: :delete, data: {corfirm: "정말로  삭제하시겠습니까?"}, class:"btn btn-danger btn-sm"%>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  <%= paginate @user_items %>
+</div>

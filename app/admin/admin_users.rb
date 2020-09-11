@@ -1,5 +1,7 @@
 ActiveAdmin.register AdminUser do
-  permit_params :email, :password, :password_confirmation
+  menu parent: "회원 관리"
+
+  # permit_params :email, :password, :password_confirmation
 
   index do
     selectable_column

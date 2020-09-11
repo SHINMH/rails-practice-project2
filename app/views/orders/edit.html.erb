@@ -1,0 +1,28 @@
+<div class="container my-5">
+  <div class="row">
+    <div class="col">
+      <div class="card p-5">
+        <h2>주문 정보 입력</h2>
+        <hr>
+
+        <%= form_for @order do |f| %>
+          <div class="form-group">
+            <%= f.label :zipcode %>
+            <%= f.text_field :zipcode , class:"form-control"%>
+          </div>
+          <div class="form-group">
+            <%= f.label :address1 %>
+            <%= f.text_field :address1 , class:"form-control"%>
+          </div>
+          <div class="form-group">
+            <%= f.label :address2 %>
+            <%= f.text_field :address2 , class:"form-control"%>
+          </div>
+          <%= f.submit "결제하기", class: "btn btn-primary" %>
+
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

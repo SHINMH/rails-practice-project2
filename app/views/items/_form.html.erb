@@ -1,0 +1,30 @@
+<div class="container my-5">
+  <div class="row">
+    <div class="card col-md-6 offset-md-3 p-5 mt-2">
+      <%= form_for @item do |f|%>
+        <div class="form-group">
+          <%= f.label :title %>
+          <%= f.text_field :title, class:"form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :description %>
+          <%= f.text_area :description, class:"form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :price %>
+          <%= f.text_field :price, class:"form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :image %>
+          <%= f.file_field :image, class:"form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :category_id %>
+          <%= f.select :category_id, options_for_select(Category.order(:position).map {|category| [category.title, category.id]}), {}, class:"form-control" %>
+        </div>
+
+        <%= f.submit "상품 등록", class: "btn btn-primary" %>
+      <% end %>
+    </div>
+  </div>
+</div>

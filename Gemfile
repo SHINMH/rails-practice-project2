@@ -31,6 +31,7 @@ gem 'devise-i18n'
 
 # 어드민
 gem 'activeadmin'
+gem 'active_skin', github: 'SoftwareBrothers/active_skin'
 
 # bootstrap - 반응형 웹 템플릿
 gem 'bootstrap', '~> 4.5', '>= 4.5.2'

@@ -1,3 +1,9 @@
+GIT
+  remote: https://github.com/SoftwareBrothers/active_skin.git
+  revision: ce714442d2ae84705a652316610582dd28a33e01
+  specs:
+    active_skin (0.0.12)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -283,6 +289,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  active_skin!
   activeadmin
   bootsnap (>= 1.4.2)
   bootstrap (~> 4.5, >= 4.5.2)

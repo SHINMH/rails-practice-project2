@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_08_030512) do
+ActiveRecord::Schema.define(version: 2020_09_10_190718) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,7 +49,7 @@ ActiveRecord::Schema.define(version: 2020_09_08_030512) do
   end
 
   create_table "items", force: :cascade do |t|
-    t.bigint "user_id", null: false
+    t.bigint "user_id"
     t.string "title"
     t.integer "price"
     t.text "description"
@@ -62,9 +62,39 @@ ActiveRecord::Schema.define(version: 2020_09_08_030512) do
     t.index ["user_id"], name: "index_items_on_user_id"
   end
 
+  create_table "line_items", force: :cascade do |t|
+    t.bigint "order_id", null: false
+    t.bigint "item_id"
+    t.integer "amount"
+    t.integer "price"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["item_id"], name: "index_line_items_on_item_id"
+    t.index ["order_id"], name: "index_line_items_on_order_id"
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.integer "status"
+    t.integer "total"
+    t.string "number"
+    t.string "zipcode"
+    t.string "address1"
+    t.string "address2"
+    t.datetime "paid_at"
+    t.datetime "canceled_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["canceled_at"], name: "index_orders_on_canceled_at"
+    t.index ["number"], name: "index_orders_on_number"
+    t.index ["paid_at"], name: "index_orders_on_paid_at"
+    t.index ["status"], name: "index_orders_on_status"
+    t.index ["user_id"], name: "index_orders_on_user_id"
+  end
+
   create_table "user_items", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.bigint "item_id", null: false
+    t.bigint "item_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["item_id"], name: "index_user_items_on_item_id"
@@ -85,6 +115,9 @@ ActiveRecord::Schema.define(version: 2020_09_08_030512) do
 
   add_foreign_key "items", "categories"
   add_foreign_key "items", "users"
+  add_foreign_key "line_items", "items"
+  add_foreign_key "line_items", "orders"
+  add_foreign_key "orders", "users"
   add_foreign_key "user_items", "items"
   add_foreign_key "user_items", "users"
 end

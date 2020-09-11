@@ -24,8 +24,11 @@
             마이페이지
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="<%= items_path(type: :selling) %>">나의 상품</a>
-            <a class="dropdown-item" href="<%= orders_path %>">나의 주문</a>
+            <a class="dropdown-item" href="<%= new_order_path %>">장바구니</a>
+            <a class="dropdown-item" href="<%= user_items_path %>">찜한 상품</a>
+            <a class="dropdown-item" href="<%= orders_path %>">내 주문</a>
+            <a class="dropdown-item" href="<%= items_path(type: :selling) %>">내 상품</a>
+            <a class="dropdown-item" href="<%= edit_user_registration_path %>">회원정보수정</a>
           </div>
         </li>
         <li class="nav-item">
