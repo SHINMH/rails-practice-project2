@@ -10,6 +10,7 @@ ko:
     price: 가격
     body: 내용
     image: 이미지
+    name: 이름
     zipcode: 우편번호
     address1: 기본주소
     address2: 상세주소

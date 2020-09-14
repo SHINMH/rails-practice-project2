@@ -28,12 +28,12 @@
         <div class="card">
           <img src="<%= item.image.url(:thumb) if item.image?%>" class="card-img-top" alt="...">
           <div class="card-body">
-            <h4 class="card-title"> <%= item.title %> </h4>
+            <h4 class="card-title"> <%= truncate(item.title,length: 10) %> </h4>
             <div class="card-subtitle">판매자: <%= item.user&.email%></div>
-            <p class="card-text"> <%= item.description %> </p>
+            <p class="card-text"> <%= truncate(item.description,length:10) %> </p>
             <p class="text-muted"> <%= number_with_delimiter item.price %>원</p>
           </div>
-          <div class="card-footer">
+          <div class="card-footer form">
             <%= link_to "자세히 보기", item, class:"btn btn-primary btn-sm" %>
             <% if item.user == current_user %>
               <%= link_to "수정", edit_item_path(item), class:"btn btn-secondary btn-sm"%>

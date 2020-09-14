@@ -31,6 +31,30 @@
           <%= f.password_field :current_password, autocomplete: "현재 비밀번호", class:"form-control" %>
         </div>
 
+        <!-- 이름 -->
+        <div class="form-group">
+          <%= f.label :name %><br />
+          <%= f.text_field :name, class:"form-control" %>
+        </div>
+
+        <!-- zipcode -->
+        <div class="form-group">
+          <%= f.label :zipcode %><br />
+          <%= f.text_field :zipcode, class:"form-control" %>
+        </div>
+
+        <!-- 주소1 -->
+        <div class="form-group">
+          <%= f.label :address1 %><br />
+          <%= f.text_field :address1, class:"form-control" %>
+        </div>
+
+        <!-- 주소2 -->
+        <div class="form-group">
+          <%= f.label :address2 %><br />
+          <%= f.text_field :address2, class:"form-control" %>
+        </div>
+
         <div class="actions">
           <%= f.submit "정보 수정", class:"btn btn-primary" %>
         </div>

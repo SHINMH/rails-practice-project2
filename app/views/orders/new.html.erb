@@ -1,22 +1,43 @@
+<style>
+.max-small {
+    width: auto; height: auto;
+    max-width: 100px;
+    max-height: 100px;
+}
+</style>
+
 <div class="container my-5">
   <div class="row">
-    <div class="col-12">
-      
+    <div class="col-12 mb-2">
+      <h2>나의 상품</h2>
+      <hr>
       <% if @order.line_items.blank? %>
-        <div class="card p-3 text-center">
-          장바구니가 비어있습니다
-        </div>
+      <div class="card p-3 text-center">
+        장바구니가 비어있습니다
+      </div>
       <% end %>
       <% @order.line_items.each do |line_item| %>
-        <div class="card p-3 mb-3">
-          <%= line_item.item.title %> <%=line_item.amount %>개
+      <div class="container card p-2 mb-3">
+        <div class="row">
+          <div class="col-sm">
+            <img src="<%= line_item.item.image.url(:thumb) if line_item.item.image? %>" class="col rounded max-small" alt="...">
+          </div>
+          <div class="col-sm">
+            <%= line_item.item.title%>
+          </div>
+          <div class="col-sm">
+            <%=line_item.amount%>개
+          </div>
         </div>
+      </div>
       <% end %>
+
+
       <p>
         총금액: <%= number_with_delimiter @order.total %>원
-      </p>      
+      </p>
       <%= link_to "주문하기", edit_order_path(@order), class: "btn btn-primary"%>
-   
+
     </div>
   </div>
 </div>
