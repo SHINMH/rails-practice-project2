@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   end
 
   resources :user_items
-  
+  resources :comments
+
   root "items#index"
 end

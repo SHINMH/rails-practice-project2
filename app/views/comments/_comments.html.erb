@@ -1,0 +1,13 @@
+<% comments||= nil%>
+
+<div class="list-group">
+  <% if comments.present? %>
+    <% comments.each do |comment| %>
+      <%= render 'comments/comment', comment: comment %>
+    <% end %>
+  <% else %>
+    <div class="list-group-item list-group-item-action" >
+      <h5>댓글이 없습니다.</h5>
+    </div>
+  <% end %>
+</div>

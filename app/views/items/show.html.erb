@@ -15,8 +15,7 @@
     <div class="col-md-8">
       <h4><%= @item.title %></h4>
       <p><%= number_with_delimiter @item.price %>원</p>
-
-      <%= link_to current_user.has_item?(@item) ? "찜 취소하기" : "찜하기", toggle_item_path(@item),class:"btn btn-primary"%>
+      <%= link_to current_user&.has_item?(@item) ? "찜 취소하기" : "찜하기", toggle_item_path(@item),class:"btn btn-primary"%>  
       <%= link_to "장바구니 담기", add_item_path(@item), class:"btn btn-secondary"%>
       <!-- edit 액션 대신 add 또는 orders 컨트롤러의 액션 등을 사용할 수 있으나 items#edit 액션을 사용할 일이 없으므로 대신 사용-->
     
@@ -25,6 +24,10 @@
       </div>
     </div>
   </div>
-
-  
+  <hr>
+  <% if current_user %>
+    <%= render "comments/form", comment: Comment.new, item: @item, user: current_user %>
+  <% end %>
+  <hr>
+  <%= render 'comments/comments', comments: @item.comments.order(created_at: :desc) %> 
 </div>

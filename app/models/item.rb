@@ -8,6 +8,7 @@ class Item < ApplicationRecord
   # 상품이 삭제되도 주문 항목은 삭제되면 안됨
   has_many :user_items, dependent: :destroy
   has_many :users, through: :user_items
+  has_many :comments, dependent: :destroy
   # 찜하기는 상품이 삭제되면 삭제되어도 될 듯 
 
   def self.generate_items

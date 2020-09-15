@@ -1,0 +1,7 @@
+$("#comment_content").val("")
+<!-- 
+$(".list-group").prepend("<%= j render 'comments/comment', comment: @comment %>")
+-->
+$(".list-group").replaceWith("<%= j render 'comments/comments', comments: @item.comments.order(created_at: :desc) %>"); 
+
+alert("댓글이 생성 되었습니다.")

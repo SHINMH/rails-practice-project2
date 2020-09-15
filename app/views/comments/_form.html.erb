@@ -1,0 +1,18 @@
+<% comment ||= nil %>
+<% item ||= nil %>
+<% user ||= nil %>
+<% if comment && item && user %>
+  <h4 class="mt-5 test">
+    <%= comment.new_record? ? "댓글 작성" : "댓글 수정" %>
+  </h4>
+  <div>
+    <%= form_for comment, remote:true do |f| %>
+      <%= f.text_area :content, class: "form-control", :required => 'required' %>
+      <div class="row p-3 justify-content-end">
+        <%= f.submit (comment.new_record? ? "댓글 작성" : "댓글 수정"), class:"btn bg-primary text-white" %>
+      </div>
+      <%= f.hidden_field :item_id, value: item.id %>
+      <%= f.hidden_field :user_id, value: user.id %>
+    <% end %>
+  </div>
+<% end %>
