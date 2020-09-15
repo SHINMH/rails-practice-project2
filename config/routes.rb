@@ -11,7 +11,12 @@ Rails.application.routes.draw do
       get :add
     end
   end
-  resources :orders
+  resources :orders do
+    member do
+      delete :delete_line_item
+    end
+  end
+
   resources :user_items
   
   root "items#index"

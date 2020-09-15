@@ -1,43 +1,53 @@
 <style>
-.max-small {
-    width: auto; height: auto;
+  .max-small {
+    width: auto;
+    height: auto;
     max-width: 100px;
     max-height: 100px;
-}
+  }
 </style>
 
 <div class="container my-5">
   <div class="row">
     <div class="col-12 mb-2">
-      <h2>나의 상품</h2>
+      <h2>장바구니</h2>
       <hr>
       <% if @order.line_items.blank? %>
-      <div class="card p-3 text-center">
-        장바구니가 비어있습니다
-      </div>
-      <% end %>
-      <% @order.line_items.each do |line_item| %>
-      <div class="container card p-2 mb-3">
-        <div class="row">
-          <div class="col-sm">
-            <img src="<%= line_item.item.image.url(:thumb) if line_item.item.image? %>" class="col rounded max-small" alt="...">
-          </div>
-          <div class="col-sm">
-            <%= line_item.item.title%>
-          </div>
-          <div class="col-sm">
-            <%=line_item.amount%>개
-          </div>
+        <div class="card p-3 text-center">
+          장바구니가 비어있습니다
         </div>
+      <% else %>
+        <table class="table container p-2 border">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">상품명</th>
+              <th scope="col">수량</th>
+              <th scope="col">가격</th>
+              <th scope="col">Handle</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @order.line_items.each do |line_item| %>
+              <tr>
+                <td><img src="<%= line_item.item.image.url(:thumb) if line_item.item.image? %>" class="col rounded max-small"
+                alt="..."></td>
+                <td><%= line_item.item.title %></td>
+                <td><%= line_item.amount %>개</td>
+                <td><%= line_item.price %>원</td>
+                <td><%= link_to "삭제", delete_line_item_order_path(@order, :line_item_id => line_item.id),  method: :delete, data: {confirm: "정말로 삭제하시겠습니까?"}, class:"btn btn-danger btn-sm"%></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+        
       </div>
-      <% end %>
-
 
       <p>
         총금액: <%= number_with_delimiter @order.total %>원
       </p>
       <%= link_to "주문하기", edit_order_path(@order), class: "btn btn-primary"%>
-
+      <% end %>
     </div>
   </div>
 </div>

@@ -2,7 +2,7 @@
 
 class ItemsController < ApplicationController
   before_action :authenticate_user!, except: %i[index show] # 찜하기는 로그인 해야지만 이용 가능
-  before_action :load_object, only: %i[show toggle edit update destroy add] # 상품 상세와 찜하기는 @item을 먼저 불러옴
+  before_action :load_object, only: %i[show toggle edit update destroy add test] # 상품 상세와 찜하기는 @item을 먼저 불러옴
   before_action :check_owner, only: %i[edit update destroy] # 수정/삭제는 상품 소유자만 할 수 있도록
 
   def index
@@ -56,14 +56,16 @@ class ItemsController < ApplicationController
     redirect_to items_path(type: :selling), notice: '상품을 등록했습니다'
   end
 
-  def edit; end
+  def edit
+  end
 
   def update
     @item.update(item_params)
     redirect_to items_path(type: :selling), notice: '상품을 등록했습니다'
   end
 
-  def show; end
+  def show
+  end
 
   def destroy
     @item.destroy
