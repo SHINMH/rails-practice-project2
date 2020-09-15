@@ -29,5 +29,5 @@
     <%= render "comments/form", comment: Comment.new, item: @item, user: current_user %>
   <% end %>
   <hr>
-  <%= render 'comments/comments', comments: @item.comments.order(created_at: :desc) %> 
+  <%= render 'comments/comments', comments: @item.comments.order(created_at: :desc).page(params[:comments_page]) %> 
 </div>
